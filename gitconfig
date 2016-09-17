@@ -1,0 +1,13 @@
+[user]
+name = Arkadiusz Kaczorowski
+email = ---
+[push]
+default = current
+[core]
+editor = nano
+filemode = false
+autocrlf = input
+[merge]
+conflictstyle = diff3
+[rerere]
+enabled = 1
