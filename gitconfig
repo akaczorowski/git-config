@@ -1,20 +1,21 @@
 [user]
-	name = Arkadiusz Kaczorowski
-	email = ---
+	name = <user>
+	email = <mail>
 [push]
 	default = current
 [core]
+	trustctime = false
 	editor = nano
 	filemode = false
 	autocrlf = input
-	trustctime = false
-[merge]
-	conflictstyle = diff3
 [color]
 	ui = true
+[credential]
+	helper = cache --timeout=3600
+[merge]
+	conflictstyle = diff3
 [rerere]
 	enabled = 1
-
 # color {{{
 [color]
     branch = auto
@@ -43,9 +44,7 @@
 [alias]
     st = status -s
 
-    cl = clone
-
-    ci = commit
+    c = commit
     cm = commit -m
     cma = commit -a -m
     ca = commit --amend
@@ -61,11 +60,12 @@
     #"!git branch -ra | grep -v done"
     bra = branch -ra
     #list commands
-    le = log --oneline --decorate
-    ll = log --pretty=format:"%C(green)%h%C(yellow)%d\\ %Creset%s%C(magenta)\\ [%cn]" --decorate --numstat
+	l = log --pretty=format:"%C(green)%h\\ %C(yellow)%ad%Cred%d\\ %Creset%s%C(magenta)\\ [%cn]" --decorate --date=short --graph
+	ls = log --pretty=format:"%C(green)%h%C(yellow)%d\\ %Creset%s%C(magenta)\\ [%cn]" --graph --decorate --numstat --oneline
+		
+    le = log --pretty=format:"%C(green)%h%C(yellow)%d\\ %Creset%s%C(magenta)\\ [%cn]" --graph --oneline --decorate
     ls1 = log --pretty=format:"%C(green)%h%C(yellow)%d\\ %Creset%s%C(magenta)\\ [%cn]" --decorate
-    lds = log --pretty=format:"%C(green)%h\\ %C(yellow)%ad%Cred%d\\ %Creset%s%C(magenta)\\ [%cn]" --decorate --date=short --graph
-    ls = log --pretty=format:"%C(green)%h\\ %C(red)[%ad]%C(yellow)%d\\ %Creset%s%C(magenta)\\ [%cn]" --decorate --date=relative
+    lds = log --pretty=format:"%C(green)%h\\ %C(red)[%ad]%C(yellow)%d\\ %Creset%s%C(magenta)\\ [%cn]" --decorate --date=relative
     lc  = "!f() { git ll "$1"^.."$1"; }; f"
     lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
     #list all aliases
@@ -140,8 +140,3 @@
     #add bitbucket remote
     ra = "!f() { git remote add $1 https://bitbucket.org/$2.git; }; f"
 # }}}
-
-
-
-
-
