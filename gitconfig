@@ -59,28 +59,30 @@
     br = branch 
     #"!git branch -ra | grep -v done"
     bra = branch -ra
-    #list commands
-	l = log --pretty=format:"%C(green)%h\\ %C(yellow)%ad%Cred%d\\ %Creset%s%C(magenta)\\ [%cn]" --decorate --date=short --graph
-	ls = log --pretty=format:"%C(green)%h%C(yellow)%d\\ %Creset%s%C(magenta)\\ [%cn]" --graph --decorate --numstat --oneline
+    
+   #list commands
+    l = log --pretty=format:"%C(green)%h\\ %C(yellow)%ad%Cred%d\\ %Creset%s%C(magenta)\\ [%cn]" --decorate --date=short --graph
+    ls = log --pretty=format:"%C(green)%h%C(yellow)%d\\ %Creset%s%C(magenta)\\ [%cn]" --graph --decorate --numstat --oneline
     lds = log --pretty=format:"%C(green)%h\\ %C(red)[%ad]%C(yellow)%d\\ %Creset%s%C(magenta)\\ [%cn]" --decorate --date=relative
-	
-	logd = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-	
+    logd = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative	
     lc  = "!f() { git ll "$1"^.."$1"; }; f"
     lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
-    #list all aliases
+
+   #list all aliases
     la = "!git config -l | grep alias | cut -c 7-"
     d = diff --word-diff
     dc = diff --word-diff --cached
+
     #list modified files in last commit
     dl = "!git ll -1"
-    #diff last commit
+    
+   #diff last commit
+    dr  = "!f() { git diff "$1"^.."$1"; }; f"
     dlc = diff --cached HEAD^
-    dr  = "!f() { git diff -w "$1"^.."$1"; }; f"
-    diffr  = "!f() { git diff "$1"^.."$1"; }; f"
+    drw  = "!f() { git diff -w "$1"^.."$1"; }; f"
     branch = branch -ra
 
-    #reset commands
+   #reset commands
     r = reset
     r1 = reset HEAD^
     r2 = reset HEAD^^
@@ -88,12 +90,12 @@
     rh1 = reset HEAD^ --hard
     rh2 = reset HEAD^^ --hard
 
-    #git svn
+   #git svn
     svnr = svn rebase
     svnd = svn dcommit
     svnl = svn log --oneline --show-commit
 
-    #stash
+   #stash
     sl = stash list
     sa = stash apply
     ss = stash save
@@ -101,21 +103,22 @@
     cp = cherry-pick
     grep = grep -Ii
     gr = grep -Ii
-    #grep from root folder
+   
+   #grep from root folder
     gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
 
-    #grep on filename
+   #grep on filename
     f = "!git ls-files | grep -i"
 
-    #rename branch tree to done-
+   #rename branch tree to done-
     done = "!f() { git branch | grep "$1" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} done-{}; }; f"
 
-    #assume aliases
+   #assume aliases
     assume = update-index --assume-unchanged
     unassume = update-index --no-assume-unchanged
-    #show assumed files
+   #show assumed files
     assumed = "!git ls-files -v | grep ^h | cut -c 3-"
-    #unassume all the assumed files
+   #unassume all the assumed files
     unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
     assumeall = "!git st -s | awk {'print $2'} | xargs git assume"
 
