@@ -7,7 +7,10 @@
 	trustctime = false
 	editor = nano
 	filemode = false
+	##CLRF Mac, Linux (convert only on commit - CRLF might be introduced)
 	autocrlf = input
+	## Windows (convert on checkout and commit)
+	## autocrlf = true
 [color]
 	ui = true
 [credential]
