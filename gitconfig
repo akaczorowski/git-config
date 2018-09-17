@@ -1,29 +1,30 @@
 [user]
-	name = <user>
+	name = <name>
 	email = <mail>
+
 [push]
 	default = current
+
 [core]
 	trustctime = false
 	editor = nano
 	filemode = false
-	##CLRF Mac, Linux (convert only on commit - CRLF might be introduced)
-	autocrlf = input
-	## Windows (convert on checkout and commit)
-	## autocrlf = true
+    ##CLRF Mac, Linux (convert only on commit - CRLF might be introduced)
+    autocrlf = input
+        ## Windows (convert on checkout and commit)
+        ## autocrlf = true
+
 [color]
 	ui = true
-[credential]
-	helper = cache --timeout=3600
-[merge]
-	conflictstyle = diff3
-[rerere]
-	enabled = 1
-# color {{{
-[color]
     branch = auto
     diff = auto
     status = auto
+
+[merge]
+	conflictstyle = diff3
+
+[rerere]
+	enabled = 1
 
 [color "branch"]
     current = red reverse bold
@@ -42,8 +43,6 @@
     changed = yellow
     untracked = red bold
 
-# }}}
-# alias {{{
 [alias]
     st = status -s
 
@@ -142,7 +141,3 @@
     sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f" 
     # initial empty commit
     empty = "!git commit -am\"[empty] Initial commit\" --allow-empty"
-
-    #add bitbucket remote
-    ra = "!f() { git remote add $1 https://bitbucket.org/$2.git; }; f"
-# }}}
